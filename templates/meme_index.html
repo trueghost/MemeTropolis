@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MemeTropolis</title>
+    <style>
+        body {
+            background-color: #000;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        h1 {
+            color: #FF4081;
+            text-align: center;
+            margin-top: 50px;
+        }
+
+        p {
+            color: #fff;
+            font-size: 18px;
+            text-align: center;
+        }
+
+        img {
+            display: block;
+            margin: 0 auto;
+            max-width: 80%;
+            height: auto;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            margin-top: 30px;
+        }
+
+        .subreddit {
+            font-weight: bold;
+            color: #FF4081;
+        }
+    </style>
+</head>
+<body>
+    <h1>A website to gather some memes!</h1>
+    <p>Here is your meme! This will refresh in <span id="countdown">30</span> seconds!</p>
+    <p><img src="{{ meme_pic }}"></p>
+    <p>Current Subreddit: <span class="subreddit">{{ subreddit }}</span></p>
+
+    <script>
+        var countdown = 30;
+
+        function updateCountdown() {
+            var countdownElement = document.getElementById("countdown");
+            countdownElement.innerText = countdown;
+
+            if (countdown > 0) {
+                countdown--;
+                setTimeout(updateCountdown, 1000);
+            } else {
+                location.reload();
+            }
+        }
+
+        updateCountdown();
+    </script>
+</body>
+</html>
